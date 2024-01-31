@@ -1,0 +1,25 @@
+<div class="pt-100 w-30 mx-auto">
+  <h3 class="mb-4">Login</h3>
+  <div *ngIf="error" class="alert alert-danger py-2" role="alert">
+    Wrong name or password
+  </div>
+
+  <label class="mb-2">Name*</label>
+  <br>
+  <input [(ngModel)]="user.name"
+         type="text"
+         class="text-input">
+  <br>
+  <br>
+  <label class="mb-2">Password*</label>
+  <br>
+  <input [(ngModel)]="user.password"
+         type="password"
+         class="text-input">
+
+  <button
+    [disabled]="!user.name || !user.password"
+    (click)="login()"
+    class="btn btn-primary px-4 mt-5">Submit
+  </button>
+</div>

@@ -1,0 +1,43 @@
+<div class="pt-100 w-30 mx-auto">
+  <div *ngIf="showPage; else notFound">
+    <div *ngIf="success" class="alert alert-success py-2" role="alert">
+      Success!
+    </div>
+
+    <div *ngIf="error" class="alert alert-danger py-2" role="alert">
+      Error!
+    </div>
+
+    <label class="mb-2">Full name</label>
+    <br>
+    <input [(ngModel)]="user.name"
+           type="text"
+           class="text-input">
+    <br>
+    <label class="mb-2 mt-3">Role</label>
+    <br>
+    <select [(ngModel)]="user.role"
+            class="form-select text-input"
+            aria-label="Default select example">
+      <option [value]="ROLES.CLIENT">Client</option>
+      <option [value]="ROLES.ADMIN">Admin</option>
+    </select>
+    <br>
+    <label class="mb-2">Password</label>
+    <br>
+    <input [(ngModel)]="user.password"
+           type="password"
+           class="text-input">
+
+    <button [disabled]="!(user.name && user.password && user.role)" (click)="submit()" class="btn btn-primary px-4 mt-5">Submit</button>
+  </div>
+
+
+  <ng-template #notFound>
+    <div class="alert alert-danger">
+      Page not found.
+    </div>
+  </ng-template>
+
+</div>
+

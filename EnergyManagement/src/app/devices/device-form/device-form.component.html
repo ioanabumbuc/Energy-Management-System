@@ -1,0 +1,46 @@
+<div class="pt-100 w-30 mx-auto">
+  <div *ngIf="showPage; else notFound">
+    <div *ngIf="success" class="alert alert-success py-2" role="alert">
+      Success!
+    </div>
+
+    <div *ngIf="error" class="alert alert-danger py-2" role="alert">
+      Error!
+    </div>
+
+    <label class="mb-2">Description</label><br>
+    <input [(ngModel)]="device.description"
+           type="text"
+           class="text-input">
+    <br>
+
+    <label class="my-2">Address</label><br>
+    <input [(ngModel)]="device.address"
+           type="text"
+           class="text-input">
+    <br>
+
+    <label class="my-2">Max Consumption</label><br>
+    <input [(ngModel)]="device.maxConsumption"
+           type="number"
+           class="text-input">
+    <br>
+
+    <label class="my-2">User id</label><br>
+    <select [(ngModel)]="device.userId"
+            class="form-select text-input"
+            aria-label="Default select example">
+      <ng-container *ngFor="let userId of userIds">
+        <option [value]="userId">{{userId}}</option>
+      </ng-container>
+    </select>
+
+
+    <button (click)="submit()" class="btn btn-primary px-4 mt-5">Submit</button>
+  </div>
+  <ng-template #notFound>
+    <div class="alert alert-danger">
+      Page not found.
+    </div>
+  </ng-template>
+</div>

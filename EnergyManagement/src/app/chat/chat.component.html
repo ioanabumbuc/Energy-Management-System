@@ -1,0 +1,57 @@
+<div class="pt-100 w-75 mx-auto">
+  <div *ngIf="showPage; else notFound">
+    <div class="row">
+      <div class="col-3 d-flex flex-column position-relative p-0">
+        <div *ngIf="role === ROLES.CLIENT; else clientsTemplate">
+          <div class="contact bg-primary text-white p-2 border-bottom cursor-pointer">
+            Admin
+            <span *ngIf="isAdminTyping" class="fst-italic typing">is typing</span>
+          </div>
+        </div>
+        <ng-template #clientsTemplate>
+          <ng-container *ngFor="let client of clients">
+            <div
+              (click)="setActiveClient(client.id)"
+              [ngClass]="{'bg-primary text-white': activeClientId === client.id}"
+              class="contact p-2 border-bottom cursor-pointer">
+              {{client.name}}
+              <span *ngIf="client.isTyping" class="fst-italic typing">is typing</span>
+            </div>
+          </ng-container>
+        </ng-template>
+      </div>
+      <div class="col-8 position-relative p-0">
+        <div class="chat-box border d-flex flex-column overflow-auto p-2">
+          <ng-container *ngFor="let message of messages[activeClientId]">
+            <div *ngIf="message.isReceived" class="message-left mb-2">
+              <div class="bg-secondary-subtle inner-message">
+                {{message.message}}
+              </div>
+            </div>
+            <div *ngIf="!message.isReceived" class="message-right align-items-end mb-2">
+              <div class="bg-primary inner-message">
+                {{message.message}}
+              </div>
+              <i *ngIf="!message.isReceived && !message.seen" class="bi bi-check2 seen-icon"></i>
+              <i *ngIf="!message.isReceived && message.seen" class="bi bi-check2-all seen-icon"></i>
+            </div>
+
+          </ng-container>
+        </div>
+        <input
+          [(ngModel)]="newMessage"
+          (ngModelChange)="sendTypingMessage()"
+          (keyup.enter)="sendMessage()"
+          type="text"
+          class="text-input position-absolute">
+        <i (click)="sendMessage()" class="bi bi-send"></i>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #notFound>
+    <div class="alert alert-danger">
+      Page not found.
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,66 @@
+.nav-item {
+  width: 100px;
+  text-align: center;
+  padding: 10px;
+}
+
+.nav-item:hover {
+  background-color: #e3e3e3;
+  transition: 100ms ease-in-out;
+}
+
+.navbar {
+  position: fixed;
+  z-index: 100;
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+.notification-icon{
+  display: flex;
+  align-items: center;
+  font-size: 23px;
+  margin-right: 30px;
+  color: var(--bs-primary);
+  cursor: pointer;
+}
+
+.bi-circle-fill{
+  position: fixed;
+  color: var(--bs-warning);
+  right: 113px;
+  font-size: 8px;
+  top: 14px;
+}
+
+.notifications-container{
+  z-index: 110;
+  position: fixed;
+  top: 40px;
+  right: 20px;
+  width: 400px;
+}
+
+.notifications{
+  background-color: #ffdae0;
+  position: absolute;
+  width: inherit;
+  text-align: center;
+  height: max-content;
+  padding: 0px 10px;
+  border-radius: 8px;
+  box-shadow: #e3e3e3;
+}
+
+.bi-triangle-fill{
+  position: relative;
+  top: 6px;
+  left: 283px;
+  color: #ffdae0;
+}
+
+.message{
+  border-bottom: 0.5px solid var(--bs-light);
+}

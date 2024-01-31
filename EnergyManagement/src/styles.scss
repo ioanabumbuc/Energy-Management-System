@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.pt-100 {
+  padding-top: 100px !important;
+}
+
+.blue-line {
+  width: 30px;
+  height: 2px;
+  color: var(--bs-primary);
+}
+
+.table-header {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.table-action {
+  cursor: pointer;
+  text-decoration: underline;
+  color: blue;
+}
+
+.text-input {
+  width: 100% !important;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  line-height: 2;
+  border-radius: 5px;
+  padding-left: 13px;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.table-row:hover {
+  background-color: var(--bs-light);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,55 @@
+.message-left{
+  display: flex;
+  justify-content: start;
+}
+
+.message-right{
+  display: flex;
+  justify-content: end;
+  color: white;
+}
+
+.inner-message{
+  width: fit-content;
+  padding: 5px;
+  border-radius: 5px;
+  max-width: 500px;
+}
+
+.conversation{
+  background-color: var(--bs-primary-bg-subtle);
+  padding: 10px;
+}
+
+.contact:hover{
+  background-color: #e9f0ff;
+}
+
+.chat-box{
+  height: 300px;
+}
+
+.text-input{
+  width: 95% !important;
+  bottom: -43px !important;
+}
+
+.bi-send{
+  position: absolute;
+  right: 6px;
+  bottom: -40px;
+  color: var(--bs-primary);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.seen-icon{
+  color: black;
+  padding-left: 3px;
+  padding-top: 2px;
+  text-align: end;
+}
+
+.typing{
+  font-size: 13px;
+}

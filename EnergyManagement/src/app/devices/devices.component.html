@@ -1,0 +1,38 @@
+<div class="pt-100 w-75 mx-auto">
+  <div *ngIf="showPage; else notFound">
+    <div class="row bg-primary-subtle py-3 table-header text-center">
+      <div class="col-1">Id</div>
+      <div class="col-3">Description</div>
+      <div class="col-3">Address</div>
+      <div [ngClass]="role === ROLES.ADMIN? 'col-2' : 'col-3'">Max Consumption</div>
+      <div [ngClass]="role === ROLES.ADMIN? 'col-1' : 'col-2'">User id</div>
+    </div>
+    <ng-container *ngFor="let device of devices">
+      <div (click)="seeDetails(device.id)" class="row py-3 table-row cursor-pointer text-center">
+        <div class="col-1">{{device.id}}</div>
+        <div class="col-3">{{device.description}}</div>
+        <div class="col-3">{{device.address}}</div>
+        <div [ngClass]="role === ROLES.ADMIN? 'col-2' : 'col-3'">{{device.maxConsumption}}</div>
+        <div [ngClass]="role === ROLES.ADMIN? 'col-1' : 'col-2'">{{device.userId}}</div>
+        <div *ngIf="role === ROLES.ADMIN" class="col-1">
+          <a
+            (click)="editDevice(device.id)"
+            class="table-action">Edit</a>
+        </div>
+        <div *ngIf="role === ROLES.ADMIN" class="col-1">
+          <a
+            (click)="deleteDevice(device.id)"
+            class="table-action">Delete</a></div>
+      </div>
+      <hr class="my-0">
+    </ng-container>
+    <div class="d-flex justify-content-end my-3">
+      <button *ngIf="role === ROLES.ADMIN" (click)="addDevice()" class="btn btn-primary px-4 py-1">Add device</button>
+    </div>
+  </div>
+  <ng-template #notFound>
+    <div class="alert alert-danger">
+      Page not found.
+    </div>
+  </ng-template>
+</div>

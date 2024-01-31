@@ -1,0 +1,29 @@
+<div class="pt-100 w-75 mx-auto">
+  <div *ngIf="showPage; else notFound">
+    <div class="row bg-primary-subtle py-3 table-header text-center">
+      <div class="col-1">Id</div>
+      <div class="col-5">Name</div>
+      <div class="col-4">Role</div>
+    </div>
+    <ng-container *ngFor="let user of users">
+      <div class="row py-3 table-header text-center">
+        <div class="col-1">{{user.id}}</div>
+        <div class="col-5">{{user.name}}</div>
+        <div class="col-4">{{user.role}}</div>
+        <div class="col-1"><a (click)="editUser(user.id)" class="table-action">Edit</a></div>
+        <div class="col-1"><a (click)="deleteUser(user.id)" class="table-action">Delete</a></div>
+      </div>
+      <hr class="my-0">
+    </ng-container>
+    <div class="d-flex justify-content-end my-3">
+      <button (click)="addUser()" class="btn btn-primary px-4 py-1">Add user</button>
+    </div>
+  </div>
+
+  <ng-template #notFound>
+    <div class="alert alert-danger">
+      Page not found.
+    </div>
+  </ng-template>
+</div>
+

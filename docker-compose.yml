@@ -1,0 +1,84 @@
+version: '3.8'
+name: proiect
+services:
+  user-microservice:
+    image: user-microservice
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://users:3306/users
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - users
+    build: ./UserMicroservice
+
+  device-microservice:
+    image: device-microservice
+    ports:
+      - 8081:8081
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://devices:3306/devices
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - devices
+    build: ./DeviceMicroservice
+    
+  communication-microservice:
+    image: communication-microservice
+    ports: 
+      - 8082:8082
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://measurements:3306/measurements
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - measurements
+    build: ./MonitoringCommunicationMicroservice
+    
+  chat-microservice:
+    image: chat-microservice
+    ports: 
+      - 8083:8083
+    build: ./ChatMicroservice
+
+  users:
+    image: mysql:5.7
+    restart: always
+    environment:
+      DATABASE_HOST: docker-mysql
+      DATABASE_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: users
+      MYSQL_USER: ioio
+      MYSQL_PASSWORD: root
+
+  devices:
+    image: mysql:5.7
+    restart: always
+    environment:
+      DATABASE_HOST: docker-mysql
+      DATABASE_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: devices
+      MYSQL_USER: ioio
+      MYSQL_PASSWORD: root
+      
+  measurements:
+    image: mysql:5.7
+    restart: always
+    environment:
+      DATABASE_HOST: docker-mysql
+      DATABASE_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: measurements
+      MYSQL_USER: ioio
+      MYSQL_PASSWORD: root
+      
+  front:
+    image: 'front'
+    container_name: 'front'
+    ports:
+      - 4200:4200
+    build: ./EnergyManagement
